@@ -9,6 +9,8 @@
     // Configuration
     // ========================================
 
+    const BASE_URL = 'https://intelligence-dashboard-qwgr.onrender.com';
+
     const CONFIG = {
         mapCenter: [30, 0],
         defaultZoom: 2,
@@ -213,8 +215,9 @@
 
     function createPopupContent(marker) {
         const typeClass = marker.type.toLowerCase();
-        const imageHtml = marker.image
-            ? `<img src="${marker.image}" alt="${marker.title}" class="popup-image" onerror="this.style.display='none'">`
+        const fullImageUrl = marker.image && !marker.image.startsWith('http') ? `${BASE_URL}${marker.image}` : marker.image;
+        const imageHtml = fullImageUrl
+            ? `<img src="${fullImageUrl}" alt="${marker.title}" class="popup-image" onerror="this.style.display='none'">`
             : '';
         const formattedDate = new Date(marker.timestamp).toLocaleString('en-US', {
             year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
@@ -246,9 +249,10 @@
         const formattedDate = new Date(markerData.timestamp).toLocaleDateString('en-US', {
             month: 'short', day: 'numeric', year: 'numeric'
         });
-        const hasImage = markerData.image && !markerData.image.includes('example.com') && !markerData.image.includes('placeholder');
+        const fullImageUrl = markerData.image && !markerData.image.startsWith('http') ? `${BASE_URL}${markerData.image}` : markerData.image;
+        const hasImage = !!fullImageUrl;
         const imgHtml = hasImage
-            ? `<img class="rich-tooltip-img" src="${markerData.image}" alt="${markerData.title}" onerror="this.style.display='none'" />`
+            ? `<img class="rich-tooltip-img" src="${fullImageUrl}" alt="${markerData.title}" onerror="this.style.display='none'" />`
             : '';
         const noImgClass = hasImage ? '' : ' rich-tooltip-noimg';
         return `
@@ -293,7 +297,7 @@
         markers.forEach(m => map.removeLayer(m));
         markers = [];
 
-        fetch('/api/markers')
+        fetch(`${BASE_URL}/api/markers`)
             .then(r => r.json())
             .then(data => {
                 allMarkerData = data.markers || [];
@@ -458,8 +462,8 @@
     function handleFiles(files) {
         Array.from(files).forEach(file => {
             const ext = file.name.split('.').pop().toLowerCase();
-            if (ext === 'csv') uploadFile(file, '/api/upload/csv');
-            else if (ext === 'json') uploadFile(file, '/api/upload/json');
+            if (ext === 'csv') uploadFile(file, `${BASE_URL}/api/upload/csv`);
+            else if (ext === 'json') uploadFile(file, `${BASE_URL}/api/upload/json`);
             else showToast('Unsupported file type: ' + ext, 'error');
         });
     }
@@ -585,17 +589,17 @@
             if (selectedImageFile) {
                 const formData = new FormData();
                 formData.append('file', selectedImageFile);
-                const uploadRes = await fetch('/api/upload/image', { method: 'POST', body: formData });
+                const uploadRes = await fetch(`${BASE_URL}/api/upload/image`, { method: 'POST', body: formData });
                 const uploadData = await uploadRes.json();
                 if (uploadData.success) {
-                    imageUrl = '/uploads/' + uploadData.filename;
+                    imageUrl = `${BASE_URL}/uploads/` + uploadData.filename;
                 } else {
                     showToast('Image upload failed: ' + (uploadData.error || 'Unknown error'), 'error');
                     return;
                 }
             }
 
-            const res = await fetch('/api/markers', {
+            const res = await fetch(`${BASE_URL}/api/markers`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title, description: desc, type, lat, lng, image: imageUrl })
