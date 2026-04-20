@@ -1,10 +1,13 @@
-# MongoDB Service for Intelligence Dashboard
-from pymongo import MongoClient
-from pymongo import DESCENDING
+import os
+from dotenv import load_dotenv
+from pymongo import MongoClient, DESCENDING
 
-MONGO_URI = "mongodb+srv://singhvikki870_db_user:3lnQDQJBDvIegPHc@intelligence-dashboard.qrz3qvd.mongodb.net/"
-DATABASE_NAME = "intelligence_dashboard"
-COLLECTION_NAME = "intelligence"
+# Load environment variables from .env file
+load_dotenv()
+
+MONGO_URI = os.environ.get("MONGO_URI", "mongodb+srv://singhvikki870_db_user:3lnQDQJBDvIegPHc@intelligence-dashboard.qrz3qvd.mongodb.net/")
+DATABASE_NAME = os.environ.get("DATABASE_NAME", "intelligence_dashboard")
+COLLECTION_NAME = os.environ.get("COLLECTION_NAME", "intelligence")
 
 class MongoDBService:
     def __init__(self):

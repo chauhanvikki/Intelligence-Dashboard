@@ -264,6 +264,7 @@ def search_markers():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/healthz', methods=['GET'])
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({
@@ -293,4 +294,5 @@ if __name__ == '__main__':
     print("  GET    /api/health      - Health check")
     print("=" * 50)
     
-    app.run(debug=False, host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
