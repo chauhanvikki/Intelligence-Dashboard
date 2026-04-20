@@ -1,0 +1,364 @@
+{
+  "markers": [
+    {
+      "id": 1,
+      "lat": 28.6139,
+      "lng": 77.209,
+      "type": "OSINT",
+      "title": "Protest Alert - Delhi",
+      "description": "Crowd gathering reported near central area",
+      "image": "http://example.com/image1.jpg",
+      "timestamp": "2026-04-18T14:30:00Z"
+    },
+    {
+      "id": 2,
+      "lat": 31.326,
+      "lng": 75.5762,
+      "type": "HUMINT",
+      "title": "Suspicious Activity - Punjab",
+      "description": "Unknown vehicles spotted by local resident",
+      "image": "http://example.com/image2.jpg",
+      "timestamp": "2026-04-18T16:00:00Z"
+    },
+    {
+      "id": 3,
+      "lat": 19.076,
+      "lng": 72.8777,
+      "type": "IMINT",
+      "title": "Satellite Observation - Mumbai",
+      "description": "Unusual structure detected in satellite image",
+      "image": "http://example.com/image3.jpg",
+      "timestamp": "2026-04-17T10:15:00Z"
+    },
+    {
+      "id": 4,
+      "lat": 22.5726,
+      "lng": 88.3639,
+      "type": "OSINT",
+      "title": "Traffic Congestion - Kolkata",
+      "description": "Heavy traffic reported due to accident",
+      "image": "http://example.com/image4.jpg",
+      "timestamp": "2026-04-18T09:45:00Z"
+    },
+    {
+      "id": 5,
+      "lat": 26.9124,
+      "lng": 75.7873,
+      "type": "HUMINT",
+      "title": "Fire Incident - Jaipur",
+      "description": "Fire reported in residential building",
+      "image": "http://example.com/image5.jpg",
+      "timestamp": "2026-04-18T11:20:00Z"
+    },
+    {
+      "id": 6,
+      "lat": 40.7128,
+      "lng": -74.006,
+      "type": "OSINT",
+      "title": "NYC Financial District",
+      "description": "Detected unusual communications from financial towers",
+      "image": null,
+      "timestamp": "2026-04-15T14:30:00Z"
+    },
+    {
+      "id": 7,
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "type": "HUMINT",
+      "title": "London Field Report",
+      "description": "Source reports increased security near government building",
+      "image": null,
+      "timestamp": "2026-04-16T09:15:00Z"
+    },
+    {
+      "id": 8,
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "type": "IMINT",
+      "title": "Tokyo Port Satellite",
+      "description": "Satellite capture of unusual vessel activity at Tokyo harbor",
+      "image": "https://via.placeholder.com/400x250?text=Tokyo+Harbor",
+      "timestamp": "2026-04-17T06:00:00Z"
+    },
+    {
+      "id": 9,
+      "lat": 31.634,
+      "lng": 74.8723,
+      "type": "HUMINT",
+      "title": "Border Activity",
+      "description": "Field report from border region",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 10,
+      "lat": 30.7333,
+      "lng": 76.7794,
+      "type": "OSINT",
+      "title": "Public Gathering",
+      "description": "OSINT report from public source",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 11,
+      "lat": 12.9716,
+      "lng": 77.5946,
+      "type": "IMINT",
+      "title": "Tech Hub Surveillance",
+      "description": "Satellite observation in tech district",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 12,
+      "lat": 17.385,
+      "lng": 78.4867,
+      "type": "OSINT",
+      "title": "Traffic Disruption",
+      "description": "Traffic monitoring report",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 13,
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "type": "HUMINT",
+      "title": "Coastal Alert",
+      "description": "Coastal area observation",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 14,
+      "lat": 18.5204,
+      "lng": 73.8567,
+      "type": "IMINT",
+      "title": "Satellite Scan",
+      "description": "Satellite imagery analysis",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 15,
+      "lat": 23.0225,
+      "lng": 72.5714,
+      "type": "OSINT",
+      "title": "Market Crowd",
+      "description": "Market area monitoring",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 16,
+      "lat": 26.8467,
+      "lng": 80.9462,
+      "type": "HUMINT",
+      "title": "Local Report",
+      "description": "Local field report",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 17,
+      "lat": 23.2599,
+      "lng": 77.4126,
+      "type": "IMINT",
+      "title": "Area Observation",
+      "description": "Area surveillance",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 18,
+      "lat": 25.5941,
+      "lng": 85.1376,
+      "type": "OSINT",
+      "title": "Event Gathering",
+      "description": "Event monitoring",
+      "image": null,
+      "timestamp": "2026-04-19T13:24:14Z"
+    },
+    {
+      "id": 19,
+      "lat": 31.326,
+      "lng": 75.5762,
+      "type": "HUMINT",
+      "title": "LPU Mittal School Event",
+      "description": "School event field report",
+      "image": null,
+      "timestamp": "2026-04-19T13:32:24Z"
+    },
+    {
+      "id": 20,
+      "lat": 42.3601,
+      "lng": -71.0589,
+      "type": "OSINT",
+      "title": "Harvard School Event",
+      "description": "University area OSINT",
+      "image": null,
+      "timestamp": "2026-04-19T13:32:24Z"
+    },
+    {
+      "id": 21,
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "type": "IMINT",
+      "title": "Paris University Surveillance",
+      "description": "University satellite imagery",
+      "image": null,
+      "timestamp": "2026-04-19T13:32:24Z"
+    },
+    {
+      "id": 22,
+      "lat": 52.52,
+      "lng": 13.405,
+      "type": "HUMINT",
+      "title": "Berlin School Report",
+      "description": "School field report",
+      "image": null,
+      "timestamp": "2026-04-19T13:32:24Z"
+    },
+    {
+      "id": 23,
+      "lat": 34.0522,
+      "lng": -118.2437,
+      "type": "OSINT",
+      "title": "LA Campus Activity",
+      "description": "Campus OSINT report",
+      "image": null,
+      "timestamp": "2026-04-19T13:32:24Z"
+    },
+    {
+      "id": 24,
+      "lat": 55.7558,
+      "lng": 37.6173,
+      "type": "OSINT",
+      "title": "Moscow City Activity",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T16:59:08.801967Z"
+    },
+    {
+      "id": 25,
+      "lat": 59.9343,
+      "lng": 30.3351,
+      "type": "HUMINT",
+      "title": "St Petersburg Field Report",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T16:59:08.802004Z"
+    },
+    {
+      "id": 26,
+      "lat": 56.8389,
+      "lng": 60.6057,
+      "type": "IMINT",
+      "title": "Yekaterinburg Satellite View",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T16:59:08.802014Z"
+    },
+    {
+      "id": 27,
+      "lat": 55.0084,
+      "lng": 82.9357,
+      "type": "OSINT",
+      "title": "Novosibirsk Traffic Activity",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T16:59:08.802020Z"
+    },
+    {
+      "id": 28,
+      "lat": 43.1056,
+      "lng": 131.8735,
+      "type": "HUMINT",
+      "title": "Vladivostok Port Report",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T16:59:08.802025Z"
+    },
+    {
+      "id": 29,
+      "lat": 55.7558,
+      "lng": 37.6173,
+      "type": "OSINT",
+      "title": "Moscow City Activity",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T17:33:49.184497Z"
+    },
+    {
+      "id": 30,
+      "lat": 59.9343,
+      "lng": 30.3351,
+      "type": "HUMINT",
+      "title": "St Petersburg Field Report",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T17:33:49.184888Z"
+    },
+    {
+      "id": 31,
+      "lat": 56.8389,
+      "lng": 60.6057,
+      "type": "IMINT",
+      "title": "Yekaterinburg Satellite View",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T17:33:49.184899Z"
+    },
+    {
+      "id": 32,
+      "lat": 55.0084,
+      "lng": 82.9357,
+      "type": "OSINT",
+      "title": "Novosibirsk Traffic Activity",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T17:33:49.184907Z"
+    },
+    {
+      "id": 33,
+      "lat": 43.1056,
+      "lng": 131.8735,
+      "type": "HUMINT",
+      "title": "Vladivostok Port Report",
+      "description": "",
+      "image": null,
+      "timestamp": "2026-04-19T17:33:49.184918Z"
+    },
+    {
+      "id": 34,
+      "lat": 54,
+      "lng": 23,
+      "type": "OSINT",
+      "title": "Accident",
+      "description": "Gas Truck Accident",
+      "image": null,
+      "timestamp": "2026-04-19T17:38:07.896739Z"
+    },
+    {
+      "id": 35,
+      "lat": 28.6139,
+      "lng": 77.209,
+      "type": "OSINT",
+      "title": "Test Image Marker",
+      "description": "Testing image upload",
+      "image": null,
+      "timestamp": "2026-04-19T18:36:03.080373Z"
+    },
+    {
+      "id": 36,
+      "lat": -3.4653,
+      "lng": -62.2159,
+      "type": "OSINT",
+      "title": "amazon forest fire",
+      "description": "Fire in amazon Forest over 12 people and 14 kangaroos are injured",
+      "image": "/uploads/20260419_191501_amazon forest.jpg",
+      "timestamp": "2026-04-19T19:15:01.547672Z"
+    }
+  ]
+}

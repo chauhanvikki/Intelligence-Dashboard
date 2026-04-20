@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Fusion Dashboard</title>
+    <meta name="description" content="Multi-source intelligence visualization platform combining OSINT, HUMINT, and IMINT data on an interactive geospatial map.">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>Intelligence Fusion Dashboard</span>
+            </div>
+
+            <div class="header-center">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search markers... ( / )" autocomplete="off" />
+                    <div class="search-recommendations" id="searchRecommendations"></div>
+                </div>
+            </div>
+
+            <div class="header-controls">
+                <button class="btn-add-marker" id="btnAddMarker">
+                    <i class="fas fa-plus"></i> Add Marker
+                </button>
+                <span class="live-clock" id="liveClock"></span>
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span>Online</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <!-- Stats -->
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-chart-bar"></i> Overview</h3>
+                    <div class="stats-grid" id="statsGrid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="statTotal">0</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                        <div class="stat-card osint">
+                            <div class="stat-value" id="statOsint">0</div>
+                            <div class="stat-label">OSINT</div>
+                        </div>
+                        <div class="stat-card humint">
+                            <div class="stat-value" id="statHumint">0</div>
+                            <div class="stat-label">HUMINT</div>
+                        </div>
+                        <div class="stat-card imint">
+                            <div class="stat-value" id="statImint">0</div>
+                            <div class="stat-label">IMINT</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-filter"></i> Filters</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">
+                            <span class="dot all"></span> All <span class="kbd">1</span>
+                        </button>
+                        <button class="filter-btn" data-filter="OSINT">
+                            <span class="dot osint"></span> OSINT <span class="kbd">2</span>
+                        </button>
+                        <button class="filter-btn" data-filter="HUMINT">
+                            <span class="dot humint"></span> HUMINT <span class="kbd">3</span>
+                        </button>
+                        <button class="filter-btn" data-filter="IMINT">
+                            <span class="dot imint"></span> IMINT <span class="kbd">4</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Upload -->
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-upload"></i> Data Upload</h3>
+                    <div class="upload-zone" id="uploadZone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop CSV/JSON here</p>
+                        <span>or click to browse</span>
+                        <input type="file" id="fileInput" accept=".csv,.json" hidden>
+                    </div>
+                </div>
+
+                <!-- Reports -->
+                <div class="sidebar-section" style="flex:1;">
+                    <h3><i class="fas fa-list"></i> Intelligence Reports</h3>
+                    <div class="report-list" id="reportList">
+                        <!-- Reports populated dynamically -->
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Sidebar Toggle -->
+            <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar [ ">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- Map -->
+            <div class="map-wrapper">
+
+                <div class="tile-switcher">
+                    <button class="tile-btn active" data-tile="dark">Dark</button>
+                    <button class="tile-btn" data-tile="standard">Standard</button>
+                    <button class="tile-btn" data-tile="satellite">Satellite</button>
+                </div>
+
+                <div id="map"></div>
+
+                <div class="map-legend">
+                    <div class="legend-item"><span class="dot osint"></span> OSINT</div>
+                    <div class="legend-item"><span class="dot humint"></span> HUMINT</div>
+                    <div class="legend-item"><span class="dot imint"></span> IMINT</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Marker Modal -->
+    <div class="modal-overlay" id="markerModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-map-marker-alt" style="color:var(--accent-blue);margin-right:8px;"></i> Add New Marker</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="markerTitle" placeholder="Enter marker title" />
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="markerDesc" placeholder="Enter description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <select id="markerType">
+                        <option value="OSINT">OSINT - Open Source Intelligence</option>
+                        <option value="HUMINT">HUMINT - Human Intelligence</option>
+                        <option value="IMINT">IMINT - Imagery Intelligence</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Latitude</label>
+                        <input type="number" id="markerLat" step="any" placeholder="e.g. 28.6139" />
+                    </div>
+                    <div class="form-group">
+                        <label>Longitude</label>
+                        <input type="number" id="markerLng" step="any" placeholder="e.g. 77.209" />
+                    </div>
+                </div>
+                <button type="button" class="btn-modal secondary" id="btnPickMap" style="width: 100%; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-map-marker-alt"></i> Choose Location from Map
+                </button>
+                <div class="form-group">
+                    <label>Image (JPG/JPEG)</label>
+                    <div class="image-upload-area" id="imageUploadArea">
+                        <div class="image-upload-placeholder" id="imageUploadPlaceholder">
+                            <i class="fas fa-image"></i>
+                            <span>Click or drag an image here</span>
+                            <small>JPG, JPEG, PNG — max 5MB</small>
+                        </div>
+                        <img class="image-upload-preview" id="imagePreview" alt="Preview" />
+                        <button type="button" class="image-remove-btn" id="imageRemoveBtn" title="Remove image">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <input type="file" id="markerImage" accept=".jpg,.jpeg,.png" hidden />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal secondary" id="modalCancel">Cancel</button>
+                <button class="btn-modal primary" id="modalSubmit"><i class="fas fa-plus"></i> Add Marker</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/app.js"></script>
+</body>
+</html>
